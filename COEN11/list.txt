@@ -1,0 +1,8 @@
+Name	 Group Size
+
+Lisa	 1
+Mary	 9
+Jim	 2
+Bob	 6
+boi	 6
+Mike	 4

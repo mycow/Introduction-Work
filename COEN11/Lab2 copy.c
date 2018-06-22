@@ -1,0 +1,124 @@
+#include <stdio.h>
+#include <string.h>
+
+int counter=0;
+char names[10][20];
+char size[10];
+
+//function adds customer name and size of party into arrays
+
+void add()
+{
+	int same=-1, number;
+	char temp[10];
+	printf("Enter name: ");
+	scanf("%s", temp);
+
+	for(int i=0; i<counter; i++)
+	{
+		same=strcmp(names[i], temp);
+	}
+
+
+	if(same!=0)
+	{
+		strcpy(names[counter], temp);
+		printf("Enter size of party: ");
+		scanf("%d", &number);
+		size[counter] = number;
+	}
+
+	else if(same==0)
+	{
+		printf("Name already exists.");
+	}
+
+	counter++;
+	
+
+}
+
+//function deletes names and size of party from arrays and moves everything up the list
+void delete()
+{
+	int same=1;
+   	int number = 0;
+	int tablesize;
+
+	printf("Enter size of table availible: ");
+	scanf("%d", &tablesize);
+
+	for(int i=0; i< sizeof(names); i++)
+		{
+			
+
+			if(size[i]==tablesize)
+			{
+				number=i;
+				break;
+			}
+
+			else
+
+			if(size[i]<=tablesize)
+			{
+				number=i;
+			}
+
+		}
+
+
+
+	for(int i=0; i< sizeof(names); i++){
+		if (i >= number)
+			{
+				strcpy(names[i], names[i+1]);
+				size[i] = size[i+1];
+			}
+
+	}
+
+	printf("Party successfully seated.");
+	counter--;
+
+}
+
+//function displays the entire list with party name next to party size
+
+void display()
+{
+	for (int i = 0; i < sizeof(size); i++)
+	{
+		printf("Name: %s Party Size: %i\n", names[i], size[i]);
+	}
+}
+
+
+int main()
+{
+    int option;
+	char name;
+
+	while(1)
+	{
+		printf("Enter Option:\n 1. Add\n 2. Remove\n 3. Display\n 4. Quit\n");
+		scanf("%d", &option);
+		switch(option)
+		{
+			case 1:
+			 add();
+			 break;
+
+			case 2:
+			delete();
+			break;
+
+			case 3:
+			display();
+			break;
+
+			case 4:
+			return 0;
+		}
+	}
+}
